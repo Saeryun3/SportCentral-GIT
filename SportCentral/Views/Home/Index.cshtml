@@ -1,0 +1,40 @@
+﻿@model NewsViewModel
+<!DOCTYPE html>
+<head>
+    <title>Card Design</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="/assests/favicon.ico" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="cards">
+        @for (int i = 0; i < 6; i++)
+        {
+            <div class="=card-container">
+                <div class="card">
+                    <img src="https://cdn.britannica.com/34/212134-050-A7289400/Lionel-Messi-2018.jpg" alt="" class="card__image" />
+                    <div class="card__content">
+                        <p>
+                            @Model.Title
+                        </p>
+                        <p>
+                            @Model.Intro
+                        </p>
+                    </div>
+                    <div class="card__info">
+                        <div>
+                            <i class="material-icons">thumb_up</i>310 @*Model rating*@
+                        </div>
+                        <div>
+                            <a href="./" class="card__link">View Article</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <a class="btn btn-primary" asp-action="AddNews"> Maak een artikel </a>
+
+    </div>
+</body>
