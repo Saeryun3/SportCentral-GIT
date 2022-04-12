@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SportCentralInterface;
+using SportCentralLibLogic.Helper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,31 +10,54 @@ namespace SportCentralLibLogic
 {
     public class NewsContainer
     {
-        private List<News> _newsList = new List<News>();
+        //private List<News> _newsList = new List<News>();
+        private INews News;
+        public NewsContainer(INews inews)
+        {
+            this.News = inews;
+        }
         public void Addnews(News news)
         {
-            if (_newsList.Contains(news))
-            {
-                throw new ArgumentException("Can not add duplicate news");
-            }
-
-            if (string.IsNullOrWhiteSpace(news.Title) || string.IsNullOrWhiteSpace(news.Intro))
-            {
-                throw new ArgumentException("Can not publish without title or intro");
-            }
-            _newsList.Add(news);
+            NewsDTO newsDTO = NewsConvertor.ConvertNewstoNewsDTO(news);
+            News.Addnews(newsDTO);         
+            //textbox toevoegen vooe image
+            //voor afbeelding in convertor 
         }
 
         public void UpdateNews(News news)
         {
             // insert into (list) and remove
         }
-
-        public IReadOnlyCollection<News> GetAllNews()
+        public List<News> GetAllNews()
         {
-            return _newsList;
-        }          
+            List<NewsDTO> newsDTOs = News.GetAllNews();
+            List<News> news = new List<News>();
+            foreach (NewsDTO newsDTO in newsDTOs)
+            {
+                news.Add(new News(newsDTO));
+            }
+            return news;
+        }
 
-
+        public List<News> GetAllNewsByCategory(string categoryName)
+        {
+            //
+            //in  interface/dal functie neerzetten en query maken bijna zelfde als getallnews
+            //laat de reader lezen zelfde als getallnews
+            // jew wilt category pakken
+            List<NewsDTO> newsDTOs = News.GetAllNewsByCategory(categoryName);
+            List<News> news = new List<News>();
+            foreach (NewsDTO newsDTO in newsDTOs)
+            {
+                news.Add(new News(newsDTO));
+            }
+            return news;
+        }
+        public News GetNewsByID(int ID)
+        {
+            NewsDTO newsDTOs = News.GetNewsByID(ID);
+            News news = new News(newsDTOs);
+            return news;
+        }
     }
 }

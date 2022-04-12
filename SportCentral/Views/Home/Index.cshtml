@@ -1,4 +1,6 @@
-﻿@model NewsViewModel
+﻿@using SportCentral.Models
+@model IEnumerable<NewsViewModel>
+ @*geeft list door*@
 <!DOCTYPE html>
 <head>
     <title>Card Design</title>
@@ -6,35 +8,36 @@
     <meta charset="utf-8" />
     <link rel="shortcut icon" href="/assests/favicon.ico" />
     <link rel="stylesheet" href="~/css/style.css" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" runat="server">
 </head>
 <body>
     <div class="cards">
-        @for (int i = 0; i < 6; i++)
+        @foreach (NewsViewModel nvm in Model)
         {
+
             <div class="=card-container">
                 <div class="card">
                     <img src="https://cdn.britannica.com/34/212134-050-A7289400/Lionel-Messi-2018.jpg" alt="" class="card__image" />
                     <div class="card__content">
                         <p>
-                            @Model.Title
+                            @nvm.Title
                         </p>
                         <p>
-                            @Model.Intro
+                            @nvm.Intro
+                            @nvm.Datetime
                         </p>
                     </div>
                     <div class="card__info">
                         <div>
-                            <i class="material-icons">thumb_up</i>310 @*Model rating*@
+                            <i class="material-icons">thumb_up</i>@nvm.Rating
                         </div>
                         <div>
-                            <a href="./" class="card__link">View Article</a>
+                            <a href="@Url.Action("Index", "Article", new { newsID = nvm.NewsID })" class="card__link">View Article</a>
                         </div>
                     </div>
                 </div>
             </div>
         }
-        <a class="btn btn-primary" asp-action="AddNews"> Maak een artikel </a>
-
     </div>
+    <a class="btn btn-primary addBtn" asp-action="AddNews"> Maak een artikel </a>
 </body>

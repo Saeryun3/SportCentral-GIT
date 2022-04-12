@@ -15,14 +15,30 @@ namespace SportCentralTest
         public void AddNewsTest()
         {
             //arrange
-            var newscontainer = new NewsContainer();
-            var news = new News("placeholder", "Placeholder", "placeholder", DateTime.Now, 5);
+            NewsContainerTestStub newsContainerTestStub = new NewsContainerTestStub();
+            NewsContainer newsContainer = new NewsContainer(newsContainerTestStub);
+            News news = new News()
+            {
+                NewsID = 3,
+                Title = "Placeholder",
+                Intro = "Placeholder",
+                Text = "Placeholder",
+                Datetime = DateTime.Now,
+                Rating = true,
+            };
+            List<News> newsList = new List<News>();
             //act
-            newscontainer.Addnews(news);
+            newsContainer.Addnews(news);
+            ///*var result*/ newsList = newsContainer.GetAllNews();
+            //var result = newsList.Contains(news);
             //assert
-            Assert.IsTrue(newscontainer.GetAllNews().Contains(news));
-            
+            Assert.AreEqual(2, newsContainerTestStub.news.Count);
+          //  Assert.AreEqual();
+        }
+        [TestMethod]
+        public void MyTestMethod()
+        {
+
         }
     }
- 
 }

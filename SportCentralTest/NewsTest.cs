@@ -8,19 +8,18 @@ namespace SportCentralTest
     public class NewsTest
     {
         [TestMethod]
-        public void ConstructorNewsTest()
+        public void CreateNewsTest()
         {
             //arrange
             var title = "Placeholder";
             var intro = "Placeholer intro";
             var text = "Placeholder text";
-            var rating = 1;
+            int rating = 0;
             DateTime datetime = new DateTime(2021, 12, 13);
             //act
             var news = new News(title, intro, text, datetime, rating);
             //assert
             Assert.IsTrue(news.Title == title && news.Intro == intro && news.Text == text && news.Datetime == datetime && news.Rating == rating);
-        }
-        // classes constructors
+        }        
     }
 }

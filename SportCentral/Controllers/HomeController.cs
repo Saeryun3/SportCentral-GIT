@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using SportCentral.Helper;
 using SportCentral.Models;
+using SportCentralDAL;
 using SportCentralLibLogic;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,14 @@ namespace SportCentral.Controllers
 
         public IActionResult Index()
         {
-            return View(new NewsViewModel());
+            NewsContainer newsContainer = new NewsContainer(new NewsDAL());
+            List<News> newsList = newsContainer.GetAllNews();
+            List<NewsViewModel> nvm = new List<NewsViewModel>();
+            foreach (var news in newsList)
+            {
+                nvm.Add(new NewsViewModel(news));
+            }
+            return View(nvm);
         }
         [HttpGet]
         public IActionResult AddNews()
@@ -35,11 +43,10 @@ namespace SportCentral.Controllers
         {
             nvm.Datetime = DateTime.Now;
             News news = Convertor.ConvertToNews(nvm);
-            NewsContainer newsContainer = new NewsContainer();
+            NewsContainer newsContainer = new NewsContainer(new NewsDAL());
             newsContainer.Addnews(news);
             return View();
         }
-
 
         public IActionResult Privacy()
         {

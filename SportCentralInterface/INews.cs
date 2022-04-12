@@ -8,7 +8,10 @@ namespace SportCentralInterface
 {
     public interface INews
     {
-        void Addnews(NewsDTO news);
-        void UpdateNews(NewsDTO news);        
+        bool Addnews(NewsDTO newsDTO);
+        void UpdateNews(NewsDTO newsDTO);
+        List<NewsDTO> GetAllNews();
+        List<NewsDTO> GetAllNewsByCategory(string name);
+        NewsDTO GetNewsByID(int ID);
     }
 }
