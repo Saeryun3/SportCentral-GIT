@@ -70,7 +70,7 @@ namespace SportCentral.Controllers
 
         public IActionResult Category(string category)
         {
-            NewsContainer newsContainer = new NewsContainer( new NewsDAL());
+            NewsContainer newsContainer = new NewsContainer(new NewsDAL());
             List<News> newsList = newsContainer.GetAllNewsByCategory(category);
             List<NewsViewModel> newsViewModel = new List<NewsViewModel>();
             foreach (News news in newsList)
