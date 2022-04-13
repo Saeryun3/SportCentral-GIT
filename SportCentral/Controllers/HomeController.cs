@@ -68,9 +68,16 @@ namespace SportCentral.Controllers
             return View();
         }
 
-        public IActionResult Football()
+        public IActionResult Category(string category)
         {
-            return View();
+            NewsContainer newsContainer = new NewsContainer( new NewsDAL());
+            List<News> newsList = newsContainer.GetAllNewsByCategory(category);
+            List<NewsViewModel> newsViewModel = new List<NewsViewModel>();
+            foreach (News news in newsList)
+            {
+                newsViewModel.Add(new NewsViewModel(news));
+            }
+            return View(newsList);
         }
 
         public IActionResult Tennis()
@@ -82,6 +89,12 @@ namespace SportCentral.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        public IActionResult DeleteNews(int id)
+        {
+            NewsContainer newsContainer = new NewsContainer(new NewsDAL());
+            newsContainer.DeleteNews(id);
+            return RedirectToAction("Index");
         }
     }
 }

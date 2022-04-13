@@ -12,6 +12,7 @@ namespace SportCentral.Models
         public string Title { get; set; }
         public string Intro { get; set; }
         public string Text { get; set; }
+        public string Image { get; set; }
         public DateTime Datetime { get; set; }
         public int Rating { get; set; }
 
@@ -26,6 +27,7 @@ namespace SportCentral.Models
             Title = news.Title;
             Intro = news.Intro;
             Text = news.Text;
+            Image = news.Image;
             Datetime = news.Datetime;
             Rating = news.Rating;
         }

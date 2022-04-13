@@ -13,7 +13,7 @@ namespace SportCentralDAL
         SqlConnection sqlConnection = new SqlConnection("Server=mssqlstud.fhict.local;Database=dbi479257;User=dbi479257;Password=Dagal555;");
         public bool Addnews(NewsDTO newsDTO)
         {
-            SqlCommand sqlCommand = new SqlCommand("INSERT INTO News(Title, Intro, Text, DateTime, Rating) VALUES(@Title, @Intro, @Text, @DateTime, @Rating)", sqlConnection);
+            SqlCommand sqlCommand = new SqlCommand("INSERT INTO News(Title, Intro, Text, DateTime, Rating, Image) VALUES(@Title, @Intro, @Text, @DateTime, @Rating, @Image)", sqlConnection);
             sqlConnection.Open();
 
             sqlCommand.Parameters.AddWithValue("@Title", newsDTO.Title);
@@ -21,9 +21,19 @@ namespace SportCentralDAL
             sqlCommand.Parameters.AddWithValue("@Text", newsDTO.Text);
             sqlCommand.Parameters.AddWithValue("@DateTime", newsDTO.Datetime);
             sqlCommand.Parameters.AddWithValue("@Rating", newsDTO.Rating);
+            sqlCommand.Parameters.AddWithValue("@Image", newsDTO.Image);
             sqlCommand.ExecuteNonQuery();
             sqlConnection.Close();
             return true;
+        }
+
+        public void DeleteNews(int newsID)
+        {
+            SqlCommand sqlCommand = new SqlCommand("DELETE FROM News WHERE NewsID = @NewsID",sqlConnection);
+            sqlConnection.Open();
+            sqlCommand.Parameters.AddWithValue("@NewsID", newsID);
+            sqlCommand.ExecuteNonQuery();
+            sqlConnection.Close();
         }
 
         public List<NewsDTO> GetAllNews()
@@ -45,6 +55,7 @@ namespace SportCentralDAL
                     Text = (string)reader["Text"],
                     Datetime = (DateTime)reader["Datetime"],
                     Rating = (int)reader["Rating"],
+                    Image = (string)reader["Image"],
                 });
             }
             sqlConnection.Close();
@@ -69,6 +80,7 @@ namespace SportCentralDAL
                     Title = (string)reader["Title"],
                     Intro = (string)reader["Intro"],
                     Text = (string)reader["Text"],
+                    Image = (string)reader["Image"],
                     Datetime = (DateTime)reader["Datetime"],
                     Rating = (int)reader["Rating"],
                 });
@@ -95,6 +107,7 @@ namespace SportCentralDAL
                     Title = (string)reader["Title"],
                     Intro = (string)reader["Intro"],
                     Text = (string)reader["Text"],
+                    Image = (string)reader["Image"],
                     Datetime = (DateTime)reader["Datetime"],
                     Rating = (int)reader["Rating"],
                 };

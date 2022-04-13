@@ -18,6 +18,7 @@ namespace SportCentralLibLogic.Helper
             newsDTO.Text = news.Text;
             newsDTO.Datetime = news.Datetime;
             newsDTO.Rating = news.Rating;
+            newsDTO.Image = news.Image;
             return newsDTO;
         }
     }

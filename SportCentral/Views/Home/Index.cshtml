@@ -17,7 +17,7 @@
 
             <div class="=card-container">
                 <div class="card">
-                    <img src="https://cdn.britannica.com/34/212134-050-A7289400/Lionel-Messi-2018.jpg" alt="" class="card__image" />
+                    <img src="@nvm.Image" alt="" class="card__image" />
                     <div class="card__content">
                         <p>
                             @nvm.Title
@@ -34,6 +34,7 @@
                         <div>
                             <a href="@Url.Action("Index", "Article", new { newsID = nvm.NewsID })" class="card__link">View Article</a>
                         </div>
+                        <a class="btn btn-danger" asp-action="DeleteNews" asp-route-id="@nvm.NewsID">Verwijder artikel</a>
                     </div>
                 </div>
             </div>

@@ -19,7 +19,7 @@ namespace SportCentralLibLogic
         public void Addnews(News news)
         {
             NewsDTO newsDTO = NewsConvertor.ConvertNewstoNewsDTO(news);
-            News.Addnews(newsDTO);         
+            News.Addnews(newsDTO);
             //textbox toevoegen vooe image
             //voor afbeelding in convertor 
         }
@@ -59,5 +59,12 @@ namespace SportCentralLibLogic
             News news = new News(newsDTOs);
             return news;
         }
+
+        public void DeleteNews(int newsID)
+        {
+            News.DeleteNews(newsID);
+        }
+
+        
     }
 }

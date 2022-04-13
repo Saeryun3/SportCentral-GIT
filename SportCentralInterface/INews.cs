@@ -13,5 +13,6 @@ namespace SportCentralInterface
         List<NewsDTO> GetAllNews();
         List<NewsDTO> GetAllNewsByCategory(string name);
         NewsDTO GetNewsByID(int ID);
+        void DeleteNews(int newsID);
     }
 }

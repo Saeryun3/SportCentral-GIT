@@ -13,12 +13,13 @@ namespace SportCentralLibLogic
         public DateTime Datetime { get; set; }
         public int Rating { get; set; }
 
-        public News(string title, string intro, string text, DateTime datetime, int rating)
+        public News(string title, string intro, string text,string image, DateTime datetime, int rating)
         {
             NewsID = NewsID;
             Title = title;
             Intro = intro;
             Text = text;
+            Image = image;
             Datetime = datetime; 
             Rating = rating;
         }
@@ -28,6 +29,7 @@ namespace SportCentralLibLogic
             Title = newsDTO.Title;
             Intro = newsDTO.Intro;
             Text = newsDTO.Text;
+            Image = newsDTO.Image;
             Datetime = newsDTO.Datetime;
             Rating = newsDTO.Rating;
         }

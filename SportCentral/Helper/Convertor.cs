@@ -15,6 +15,7 @@ namespace SportCentral.Helper
             news.Title = nvm.Title;
             news.Intro = nvm.Intro;
             news.Text = nvm.Text;
+            news.Image = nvm.Image;
             news.Datetime = nvm.Datetime;
             news.Rating = nvm.Rating;
             return news;
