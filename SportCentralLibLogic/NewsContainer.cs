@@ -65,6 +65,12 @@ namespace SportCentralLibLogic
             News.DeleteNews(newsID);
         }
 
+        //public bool RateNews(bool liked)
+        //{
+        //    if (liked == true)
+        //    return false;
+        //}
+
         
     }
 }
