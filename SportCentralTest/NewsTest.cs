@@ -16,8 +16,9 @@ namespace SportCentralTest
             var text = "Placeholder text";
             int rating = 0;
             DateTime datetime = new DateTime(2021, 12, 13);
+            var image = "placeholder image";
             //act
-            var news = new News(title, intro, text, datetime, rating);
+            var news = new News(title, intro, text, image, datetime, rating);
             //assert
             Assert.IsTrue(news.Title == title && news.Intro == intro && news.Text == text && news.Datetime == datetime && news.Rating == rating);
         }        

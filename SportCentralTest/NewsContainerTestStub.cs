@@ -20,7 +20,7 @@ namespace SportCentralTest
                 Intro = "Placeholder",
                 Text = "Placeholder",
                 Datetime = DateTime.Now,
-                Rating = true,
+                Rating = 1,
             };
             news.Add(article);
         }
@@ -29,12 +29,32 @@ namespace SportCentralTest
             news.Add(newsDTO);
         }
 
+        public void DeleteNews(int newsID)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<NewsDTO> GetAllNews()
         {
             return news;
         }
 
+        public List<NewsDTO> GetAllNewsByCategory(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public NewsDTO GetNewsByID(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
         public void UpdateNews(NewsDTO news)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool INews.Addnews(NewsDTO newsDTO)
         {
             throw new NotImplementedException();
         }

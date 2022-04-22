@@ -24,7 +24,7 @@ namespace SportCentralTest
                 Intro = "Placeholder",
                 Text = "Placeholder",
                 Datetime = DateTime.Now,
-                Rating = true,
+                Rating = 1,
             };
             List<News> newsList = new List<News>();
             //act
