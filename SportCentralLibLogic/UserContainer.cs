@@ -35,7 +35,5 @@ namespace SportCentralLibLogic
         {
             return new User (User.GetUserByEmailAndPassword(Email, Password));
         }
-
-
     }
 }
