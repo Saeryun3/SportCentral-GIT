@@ -15,5 +15,9 @@ namespace SportCentralLibLogic
             this.User = iuser;
         }
 
+        public bool CreateUser()
+        {
+            return null;
+        }
     }
 }

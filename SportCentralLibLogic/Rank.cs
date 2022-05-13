@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SportCentralInterface
+namespace SportCentralLibLogic
 {
-   public  interface IUser
+   public enum Rank
    {
-
+        Super_Admin,
+        Moderator,
+        User,
    }
 }
