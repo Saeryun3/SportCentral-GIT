@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SportCentralInterface\SportCentralInterface.csproj" />
+    <ProjectReference Include="..\SportCentralLibLogic\SportCentralLibLogic.csproj" />
   </ItemGroup>
 
 </Project>

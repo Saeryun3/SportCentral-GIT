@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace SportCentralLibLogic.Helper
 {
    public class NewsConvertor
-    {
+   {
         public static NewsDTO ConvertNewstoNewsDTO(News news)
         {
             NewsDTO newsDTO = new NewsDTO();
@@ -21,5 +21,5 @@ namespace SportCentralLibLogic.Helper
             newsDTO.Image = news.Image;
             return newsDTO;
         }
-    }
+   }
 }

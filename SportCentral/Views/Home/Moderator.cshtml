@@ -1,6 +1,6 @@
 ﻿@using SportCentral.Models
 @model IEnumerable<NewsViewModel>
-@*geeft list door*@
+ @*geeft list door*@
 <!DOCTYPE html>
 <head>
     <title>Card Design</title>
@@ -34,10 +34,11 @@
                         <div>
                             <a href="@Url.Action("Index", "Article", new { newsID = nvm.NewsID })" class="card__link">View Article</a>
                         </div>
-                       
+                        <a class="btn btn-danger" asp-action="DeleteNews" asp-route-id="@nvm.NewsID">Verwijder artikel</a>
                     </div>
                 </div>
             </div>
-         }
-    </div>    
+        }
+    </div>
+    <a class="btn btn-primary addBtn" asp-action="AddNews"> Maak een artikel </a>
 </body>

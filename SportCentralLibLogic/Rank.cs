@@ -8,8 +8,8 @@ namespace SportCentralLibLogic
 {
    public enum Rank
    {
-        Super_Admin,
-        Moderator,
         User,
+        Moderator,
+        Super_Admin
    }
 }

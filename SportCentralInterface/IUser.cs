@@ -8,6 +8,8 @@ namespace SportCentralInterface
 {
    public  interface IUser
    {
-
+        bool CreateUser(UserDTO user);
+        bool CheckIfUserExist(UserDTO userDTO);
+        UserDTO GetUserByEmailAndPassword(string Email, string Password);
    }
 }

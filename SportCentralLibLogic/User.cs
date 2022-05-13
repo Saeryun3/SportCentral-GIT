@@ -23,5 +23,10 @@ namespace SportCentralLibLogic
             this.Password = userDTO.Password;
             this.Rank = (Rank)userDTO.Rank;
         }
+
+        public User()
+        {
+
+        }
     }
 }

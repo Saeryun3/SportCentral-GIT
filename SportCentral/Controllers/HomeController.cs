@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SportCentral.Helper;
 using SportCentral.Models;
@@ -23,6 +24,12 @@ namespace SportCentral.Controllers
 
         public IActionResult Index()
         {
+            if (HttpContext.Session.GetString("Rank") == Convert.ToString(Rank.Moderator))
+            {
+
+                return RedirectToAction("Moderator");
+            }
+
             NewsContainer newsContainer = new NewsContainer(new NewsDAL());
             List<News> newsList = newsContainer.GetAllNews();
             List<NewsViewModel> nvm = new List<NewsViewModel>();
@@ -42,7 +49,7 @@ namespace SportCentral.Controllers
         public IActionResult AddNews(NewsViewModel nvm)
         {
             nvm.Datetime = DateTime.Now;
-            News news = Convertor.ConvertToNews(nvm);
+            News news = NewsConvertorr.ConvertToNews(nvm);
             NewsContainer newsContainer = new NewsContainer(new NewsDAL());
             newsContainer.Addnews(news);
             return View();
@@ -97,6 +104,26 @@ namespace SportCentral.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [HttpGet]
+        public IActionResult Moderator()
+        {
+            NewsContainer newsContainer = new NewsContainer(new NewsDAL());
+            List<News> newsList = newsContainer.GetAllNews();
+            List<NewsViewModel> nvm = new List<NewsViewModel>();
+            foreach (var news in newsList)
+            {
+                nvm.Add(new NewsViewModel(news));
+            }
+            return View(nvm);
+        }
+
+        [HttpPost]
+        public IActionResult Moderator(NewsViewModel nvm)
+        {
+            return View();
+        }
        
+
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SportCentral.Helper
 {
-    public class Convertor
+    public class NewsConvertorr
     {
         public static News ConvertToNews(NewsViewModel nvm)
         {

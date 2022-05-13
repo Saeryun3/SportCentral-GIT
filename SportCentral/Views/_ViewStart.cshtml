@@ -1,3 +1,17 @@
-﻿@{
-    Layout = "_Layout";
-}
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Session
+@{
+    if (Session.HttpContext.Session.GetString("Rank") == "Moderator" || Session.HttpContext.Session.GetString("Rank") == "Super_Admin")
+    {
+        Layout = "_LayoutLoggedModerator";
+    }
+    else if (Session.HttpContext.Session.GetString("Rank") == "User")
+    {
+        Layout = "_LayoutLoggedUser";
+    }
+
+    else
+    {
+        Layout = "_Layout";
+    }
+    }
