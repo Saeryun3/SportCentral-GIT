@@ -25,6 +25,7 @@ namespace SportCentralTest
                 Text = "Placeholder",
                 Datetime = DateTime.Now,
                 Rating = 1,
+                Image = "Placeholder"
             };
             List<News> newsList = new List<News>();
             //act
@@ -36,9 +37,15 @@ namespace SportCentralTest
           //  Assert.AreEqual();
         }
         [TestMethod]
-        public void MyTestMethod()
+        public void DeleteNewsTest()
         {
-
+            //arange
+            NewsContainerTestStub newsContainerTestStub = new NewsContainerTestStub();
+            NewsContainer newsContainer = new NewsContainer(newsContainerTestStub);
+            //act
+            newsContainerTestStub.DeleteNews(2);
+            //assert
+            Assert.AreEqual(1, newsContainerTestStub.news.Count);
         }
     }
 }

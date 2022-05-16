@@ -24,19 +24,31 @@ namespace SportCentralTest
             };
             news.Add(article);
         }
-        public void Addnews(NewsDTO newsDTO)
+        public bool Addnews(NewsDTO newsDTO)
         {
             news.Add(newsDTO);
+            return true;
         }
 
         public void DeleteNews(int newsID)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < news.Count; i++)
+            {
+                if (news[i].NewsID == newsID)
+                {
+                    news.Remove(news[i]);
+                }
+            } 
         }
 
         public List<NewsDTO> GetAllNews()
         {
-            return news;
+            List<NewsDTO> newsDTOs = new List<NewsDTO>();
+            foreach (NewsDTO newsDTO in news)
+            {
+               
+            }
+            return news;// to do
         }
 
         public List<NewsDTO> GetAllNewsByCategory(string name)
@@ -54,9 +66,9 @@ namespace SportCentralTest
             throw new NotImplementedException();
         }
 
-        bool INews.Addnews(NewsDTO newsDTO)
-        {
-            throw new NotImplementedException();
-        }
+        //bool INews.Addnews(NewsDTO newsDTO)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

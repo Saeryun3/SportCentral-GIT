@@ -15,6 +15,7 @@ namespace SportCentral.Models
         [Required]
         public string Intro { get; set; }
         public string Text { get; set; }
+        [Required]
         public string Image { get; set; }
         public DateTime Datetime { get; set; }
         public int Rating { get; set; }

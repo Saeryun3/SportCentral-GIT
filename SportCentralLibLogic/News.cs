@@ -13,9 +13,9 @@ namespace SportCentralLibLogic
         public DateTime Datetime { get; set; }
         public int Rating { get; set; }
 
-        public News(string title, string intro, string text,string image, DateTime datetime, int rating)
+        public News(int newsID, string title, string intro, string text,string image, DateTime datetime, int rating)
         {
-            NewsID = NewsID;
+            NewsID = newsID;
             Title = title;
             Intro = intro;
             Text = text;

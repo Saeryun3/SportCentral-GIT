@@ -62,5 +62,5 @@ namespace SportCentralDAL
             sqlConnection.Close();
             return Result;
         }
-    }
+   }
 }
