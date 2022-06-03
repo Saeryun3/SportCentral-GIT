@@ -40,18 +40,18 @@ namespace SportCentral.Controllers
             return View(nvm);
         }
         [HttpGet]
-        public IActionResult AddNews()
+        public IActionResult CreateNews()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult AddNews(NewsViewModel nvm)
+        public IActionResult CreateNews(NewsViewModel nvm)
         {
             nvm.Datetime = DateTime.Now;
             News news = NewsConvertorr.ConvertToNews(nvm);
             NewsContainer newsContainer = new NewsContainer(new NewsDAL());
-            newsContainer.Addnews(news);
+            newsContainer.CreateNews(news);
             return View();
         }
 

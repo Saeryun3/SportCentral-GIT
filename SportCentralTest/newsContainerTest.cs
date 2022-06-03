@@ -29,7 +29,7 @@ namespace SportCentralTest
             };
             List<News> newsList = new List<News>();
             //act
-            newsContainer.Addnews(news);
+            newsContainer.CreateNews(news);
             ///*var result*/ newsList = newsContainer.GetAllNews();
             //var result = newsList.Contains(news);
             //assert

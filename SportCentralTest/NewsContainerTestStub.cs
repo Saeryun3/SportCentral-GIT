@@ -24,7 +24,7 @@ namespace SportCentralTest
             };
             news.Add(article);
         }
-        public bool Addnews(NewsDTO newsDTO)
+        public bool CreateNews(NewsDTO newsDTO)
         {
             news.Add(newsDTO);
             return true;

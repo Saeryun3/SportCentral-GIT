@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SportCentralInterface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,17 +7,25 @@ using System.Threading.Tasks;
 
 namespace SportCentralLibLogic
 {
-    public class React
+    public class Comment
     {
+        public int CommentID { get; set; }
         public string Text { get; private set; }
         public DateTime DateTime { get; private set; }
         public bool Rating { get; private set; }
 
-        public React(string text, DateTime date, bool rating)
+        public Comment(int reactID, string text, DateTime date, bool rating)
         {
+            CommentID = reactID;
             Text = text;
             DateTime = date;
             Rating = rating;
         }
+
+        public Comment(CommentDTO commentDTO)
+        {
+
+        }
+
     }
 }

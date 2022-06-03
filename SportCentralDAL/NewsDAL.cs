@@ -11,7 +11,7 @@ namespace SportCentralDAL
     public class NewsDAL : INews
     {
         SqlConnection sqlConnection = new SqlConnection("Server=mssqlstud.fhict.local;Database=dbi479257;User=dbi479257;Password=Dagal555;");
-        public bool Addnews(NewsDTO newsDTO)
+        public bool CreateNews(NewsDTO newsDTO)
         {
             SqlCommand sqlCommand = new SqlCommand("INSERT INTO News(Title, Intro, Text, DateTime, Rating, Image) VALUES(@Title, @Intro, @Text, @DateTime, @Rating, @Image)", sqlConnection);
             sqlConnection.Open();

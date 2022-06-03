@@ -16,10 +16,10 @@ namespace SportCentralLibLogic
         {
             this.News = inews;
         }
-        public void Addnews(News news)
+        public void CreateNews(News news)
         {
             NewsDTO newsDTO = NewsConvertor.ConvertNewstoNewsDTO(news);
-            News.Addnews(newsDTO);
+            News.CreateNews(newsDTO);
             //textbox toevoegen vooe image
             //voor afbeelding in convertor 
         }
