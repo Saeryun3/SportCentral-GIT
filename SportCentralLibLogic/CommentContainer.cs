@@ -16,9 +16,9 @@ namespace SportCentralLibLogic
             this.Comments = icomment;
         }
 
-        public List<Comment> GetAllComments()
+        public List<Comment> GetAllComments(int newsID)
         {
-            List<CommentDTO> commentDTOs = Comments.GetAllComments();
+            List<CommentDTO> commentDTOs = Comments.GetAllComments(newsID);
             List<Comment> comments = new List<Comment>();
             foreach (CommentDTO commentDTO in commentDTOs)
             {

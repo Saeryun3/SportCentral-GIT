@@ -19,28 +19,44 @@ namespace SportCentralDAL
             sqlCommand.Parameters.AddWithValue("@Text", commentDTO.Text);
             sqlCommand.Parameters.AddWithValue("@DateTime", commentDTO.DateTime);
             sqlCommand.Parameters.AddWithValue("@Rating", commentDTO.Rating);
-            sqlCommand.ExecuteNonQuery();
+            try
+            {
+                sqlCommand.ExecuteNonQuery();
+
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
             sqlConnection.Close();
         }
 
-        public List<CommentDTO> GetAllComments()
+        public List<CommentDTO> GetAllComments(int newsID)
         {
-            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Comment", sqlConnection);
+            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Comment WHERE NewsID = @newsId", sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@newsId", newsID);
             sqlConnection.Open();
-            SqlDataReader reader = sqlCommand.ExecuteReader();
             List<CommentDTO> comments = new List<CommentDTO>();
-            while (reader.Read())
+            try
             {
-                comments.Add(new CommentDTO()
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+                while (reader.Read())
                 {
-                    CommentID = (int)reader["CommentID"],
-                    Text = (string)reader["Text"],
-                    DateTime = (DateTime)reader["CommentID"],
-                });
-                sqlConnection.Close();
+                    comments.Add(new CommentDTO()
+                    {
+                        CommentID = (int)reader["CommentID"],
+                        Text = (string)reader["Text"],
+                        //DateTime = (DateTime)reader["CommentID"],
+                    });
+                }
             }
-            return comments;
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
 
+            sqlConnection.Close();
+            return comments;
         }
     }
 }

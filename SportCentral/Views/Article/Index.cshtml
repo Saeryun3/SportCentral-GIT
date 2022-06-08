@@ -2,6 +2,15 @@
 @{
     ViewData["Title"] = "Index";
 }
+<h1>@Model.Title</h1>
+<h3>@Model.Intro</h3>
+<p>@Model.Text</p>
 
-<h1>@Model.Text</h1>
 
+
+@foreach(CommentViewModel comment in Model.comments)
+{
+    <p>
+        @comment.Text
+    </p>
+}

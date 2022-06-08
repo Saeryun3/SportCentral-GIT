@@ -9,6 +9,6 @@ namespace SportCentralInterface
     public interface IComment
     {
         void CreateComment(CommentDTO reactDTO);
-        List<CommentDTO> GetAllComments();
+        List<CommentDTO> GetAllComments(int newsID);
     }
 }

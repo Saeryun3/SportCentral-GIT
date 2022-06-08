@@ -36,7 +36,7 @@ namespace SportCentralTest
             users.Add(user2);
         }
 
-        public bool CheckIfUserExist(UserDTO userDTO)
+        public bool UserExist(UserDTO userDTO)
         {
             foreach (UserDTO user  in users)
             {
@@ -62,6 +62,18 @@ namespace SportCentralTest
                 }
             }
             return null;
+        }
+
+        public bool UserExistsByEmailAndPassword(string Email, string Password)
+        {
+            foreach (UserDTO user in users)
+            {
+                if (user.Email == Email && user.Password == Password)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

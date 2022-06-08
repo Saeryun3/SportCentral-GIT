@@ -37,7 +37,7 @@ namespace SportCentralTest
             //Assert.AreEqual(user.UserID, userContainerTestStub.users[2].UserID);
         }
         [TestMethod]
-        public void CheckIfUserExitTest()
+        public void UserExistTest()
         {
             //arange
             UserContainerTestStub userContainerTestStub = new UserContainerTestStub();
@@ -51,12 +51,12 @@ namespace SportCentralTest
                 Rank = (int)Rank.User
             };
             //act
-            var result = userContainer.CheckIfUserExist(user);
+            var result = userContainer.UserExist(user);
             //assert
             Assert.IsFalse(result);
         }
         [TestMethod]
-        public void GetPlayerByEmailAndPasswordTest()
+        public void UserExistsByEmailAndPasswordTest()
         {
             //arange 
             UserContainerTestStub userContainerTestStub = new UserContainerTestStub();
@@ -70,9 +70,9 @@ namespace SportCentralTest
                 Rank = (int)Rank.User
             };
             //act
-            User user1 = userContainer.GetUserByEmailAndPassword(user.Email, user.Password);
+            var result = userContainer.UserExistsByEmailAndPassword(user);
             //assert
-            Assert.AreEqual(user.UserID, user1.UserID);
+            Assert.IsTrue(result);
         }
 
     }

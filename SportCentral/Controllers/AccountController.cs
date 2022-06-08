@@ -49,9 +49,9 @@ namespace SportCentral.Controllers
             user.Email = uvm.Email;
             user.Password = uvm.Password;
             UserContainer userContainer = new UserContainer(UserDAL);
-            if (userContainer.CheckIfUserExist(user))
+            if (userContainer.UserExistsByEmailAndPassword(user))
             {
-                User LoggedPlayer = userContainer.GetUserByEmailAndPassword(uvm.Email, uvm.Password);
+                User LoggedPlayer = userContainer.GetUser(user);
                 if (LoggedPlayer.Rank == Rank.User)
                 {
                     HttpContext.Session.SetString("Rank", "User");

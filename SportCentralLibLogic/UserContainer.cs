@@ -17,7 +17,7 @@ namespace SportCentralLibLogic
         }
         public bool CreateUser(User user)
         {
-            if (!CheckIfUserExist(user))
+            if (!UserExist(user))
             {
                 UserDTO userDTO = UserConvertor.ConvertoUserDTO(user);
                 User.CreateUser(userDTO);
@@ -25,15 +25,20 @@ namespace SportCentralLibLogic
             }
             return false;
         }
-        public bool CheckIfUserExist(User user)
+        public bool UserExist(User user)
         {
             UserDTO userDTO = UserConvertor.ConvertoUserDTO(user);
-            return User.CheckIfUserExist(userDTO);
+            return User.UserExist(userDTO);
         }
 
-        public User GetUserByEmailAndPassword(string Email, string Password)
+        public bool UserExistsByEmailAndPassword(User user)
         {
-            return new User (User.GetUserByEmailAndPassword(Email, Password));
+            return User.UserExistsByEmailAndPassword(user.Email, user.Password);
+        }
+
+        public User GetUser(User user)
+        {
+            return new User(User.GetUserByEmailAndPassword(user.Email, user.Password));
         }
     }
 }

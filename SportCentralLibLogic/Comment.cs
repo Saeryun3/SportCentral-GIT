@@ -11,8 +11,8 @@ namespace SportCentralLibLogic
     {
         public int CommentID { get; set; }
         public string Text { get; private set; }
-        public DateTime DateTime { get; private set; }
-        public bool Rating { get; private set; }
+        public DateTime DateTime { get;  set; }
+        public bool Rating { get;  set; }
 
         public Comment(int reactID, string text, DateTime date, bool rating)
         {
@@ -22,9 +22,12 @@ namespace SportCentralLibLogic
             Rating = rating;
         }
 
-        public Comment(CommentDTO commentDTO)
+        public Comment(CommentDTO comment)
         {
-
+            CommentID = comment.CommentID;
+            Text = comment.Text;
+            DateTime = comment.DateTime;
+            Rating = comment.Rating;
         }
 
     }
