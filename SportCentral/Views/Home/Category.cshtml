@@ -1,2 +1,30 @@
-﻿@model NewsViewModel
-<div>voetbal</div>
+﻿@model IEnumerable<NewsViewModel>
+<div class="cards">
+    @foreach (NewsViewModel nvm in Model)
+    {
+
+        <div class="=card-container">
+            <div class="card">
+                <img src="@nvm.Image" alt="" class="card__image" />
+                <div class="card__content">
+                    <p>
+                        @nvm.Title
+                    </p>
+                    <p>
+                        @nvm.Intro
+                        @nvm.Datetime
+                    </p>
+                </div>
+                <div class="card__info">
+                    <div>
+                        <i class="material-icons">thumb_up</i>@nvm.Rating
+                    </div>
+                    <div>
+                        <a href="@Url.Action("Index", "Article", new { newsID = nvm.NewsID })" class="card__link">View Article</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+</div>    

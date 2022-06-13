@@ -2,15 +2,39 @@
 @{
     ViewData["Title"] = "Index";
 }
-<h1>@Model.Title</h1>
-<h3>@Model.Intro</h3>
-<p>@Model.Text</p>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>@Model.Title.</title>
+    <link href="~/css/style.css" rel="stylesheet" />
+</head>
+<style>
+
+</style>
+<body>
+    <h1>@Model.Title</h1>
+    <h3>@Model.Intro</h3>
+    <p>@Model.Text</p>
 
 
+    <div class="commentContainer">
+        <h2>@Model.comments.Count Comments</h2>
+        <form action="/" method="post">
+            <div class="addCommentContainer">
+                <textarea></textarea>
+                <input type="submit" name="name" value="Add Comment" />
+            </div>
+        </form>
+        @foreach (CommentViewModel comment in Model.comments)
+        {
+            <div class="commentItem">
+                <p>
+                    @comment.Text
+                </p>
+            </div>
+        }
+    </div>
+</body>
+</html>
 
-@foreach(CommentViewModel comment in Model.comments)
-{
-    <p>
-        @comment.Text
-    </p>
-}
+

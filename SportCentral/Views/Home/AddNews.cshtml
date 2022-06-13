@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="CreateNews">
+        <form asp-action="AddNews">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
@@ -33,6 +33,16 @@
                 <input asp-for="Image" class="form-control" />
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
+            <label for="CategoryName">Welke sport category?:</label>
+
+            <select id="CategoryID" asp-for="CategoryID">
+                <option value="1">Voetbal</option>
+                <option value="2">F1</option>
+                <option value="3">basketbal</option>
+                <option value="4">UFC</option>
+                <option value="5">darten</option>
+                <option value="6">Tennis</option>
+            </select>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

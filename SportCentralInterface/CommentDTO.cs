@@ -12,5 +12,6 @@ namespace SportCentralInterface
         public string Text { get; set; }
         public DateTime DateTime { get; set; }
         public bool Rating { get; set; }
+        public int NewsID { get; set; }
     }
 }

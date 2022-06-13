@@ -28,13 +28,11 @@ namespace SportCentralTest
             //act            
             userContainer.CreateUser(user);
             //assert
-            //Assert.AreEqual(3, userContainerTestStub.users.Count);
+            Assert.AreEqual(3, userContainerTestStub.users.Count);
             Assert.AreEqual(user.UserID, userContainerTestStub.users[2].UserID);
-            Assert.AreEqual(user.Username, userContainerTestStub.users[2].UserID);
-            Assert.AreEqual(user.Password, userContainerTestStub.users[2].UserID);
-            Assert.AreEqual(user.Rank, userContainerTestStub.users[2].UserID);
-            //Assert.AreEqual(user.UserID, userContainerTestStub.users[2].UserID);
-            //Assert.AreEqual(user.UserID, userContainerTestStub.users[2].UserID);
+            Assert.AreEqual(user.Username, userContainerTestStub.users[2].Username);
+            Assert.AreEqual(user.Password, userContainerTestStub.users[2].Password);
+            Assert.AreEqual((int)user.Rank, userContainerTestStub.users[2].Rank);
         }
         [TestMethod]
         public void UserExistTest()

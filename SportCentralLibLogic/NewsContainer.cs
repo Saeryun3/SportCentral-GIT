@@ -39,13 +39,13 @@ namespace SportCentralLibLogic
             return news;
         }
 
-        public List<News> GetAllNewsByCategory(string categoryName)
+        public List<News> GetAllNewsByCategory(int category)
         {
             //
             //in  interface/dal functie neerzetten en query maken bijna zelfde als getallnews
             //laat de reader lezen zelfde als getallnews
             // jew wilt category pakken
-            List<NewsDTO> newsDTOs = News.GetAllNewsByCategory(categoryName);
+            List<NewsDTO> newsDTOs = News.GetAllNewsByCategory(category);
             List<News> news = new List<News>();
             foreach (NewsDTO newsDTO in newsDTOs)
             {

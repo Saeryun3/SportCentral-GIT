@@ -13,7 +13,7 @@ namespace SportCentralDAL
         SqlConnection sqlConnection = new SqlConnection("Server=mssqlstud.fhict.local;Database=dbi479257;User=dbi479257;Password=Dagal555;");
         public bool CreateNews(NewsDTO newsDTO)
         {
-            SqlCommand sqlCommand = new SqlCommand("INSERT INTO News(Title, Intro, Text, DateTime, Rating, Image) VALUES(@Title, @Intro, @Text, @DateTime, @Rating, @Image)", sqlConnection);
+            SqlCommand sqlCommand = new SqlCommand("INSERT INTO News(Title, Intro, Text, DateTime, Rating, Image, CategoryID) VALUES(@Title, @Intro, @Text, @DateTime, @Rating, @Image, @CategoryID)", sqlConnection);
             sqlConnection.Open();
 
             sqlCommand.Parameters.AddWithValue("@Title", newsDTO.Title);
@@ -22,6 +22,7 @@ namespace SportCentralDAL
             sqlCommand.Parameters.AddWithValue("@DateTime", newsDTO.Datetime);
             sqlCommand.Parameters.AddWithValue("@Rating", newsDTO.Rating);
             sqlCommand.Parameters.AddWithValue("@Image", newsDTO.Image);
+            sqlCommand.Parameters.AddWithValue("@CategoryID", newsDTO.CategoryID);
             try
             {
                 sqlCommand.ExecuteNonQuery();
@@ -53,7 +54,7 @@ namespace SportCentralDAL
 
         public List<NewsDTO> GetAllNews()
         {
-            SqlCommand sqlCommand = new SqlCommand("SELECT TOP 6 * FROM News", sqlConnection);
+            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM News", sqlConnection);
 
             sqlConnection.Open();
             List<NewsDTO> Result = new List<NewsDTO>();
@@ -85,28 +86,33 @@ namespace SportCentralDAL
             return Result;
         }
 
-        public List<NewsDTO> GetAllNewsByCategory(string categoryName)
+        public List<NewsDTO> GetAllNewsByCategory(int category)
         {
-            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM News JOIN Category on Category.CategoryID = News.CategoryID WHERE Category.CategoryName = @name", sqlConnection);
-            sqlCommand.Parameters.AddWithValue("@name", categoryName);
-
-            sqlConnection.Open();
-            SqlDataReader reader = sqlCommand.ExecuteReader();
-            // zet het resultaat in de reader
+            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM News WHERE CategoryID = @categoryId", sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@categoryId", category);
             List<NewsDTO> Result = new List<NewsDTO>();
-
-            while (reader.Read())
+            sqlConnection.Open();
+            try
             {
-                Result.Add(new NewsDTO()
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+                // zet het resultaat in de reader
+                while (reader.Read())
                 {
-                    NewsID = (int)reader["NewsID"],
-                    Title = (string)reader["Title"],
-                    Intro = (string)reader["Intro"],
-                    Text = (string)reader["Text"],
-                    Image = (string)reader["Image"],
-                    Datetime = (DateTime)reader["Datetime"],
-                    Rating = (int)reader["Rating"],
-                });
+                    Result.Add(new NewsDTO()
+                    {
+                        NewsID = (int)reader["NewsID"],
+                        Title = (string)reader["Title"],
+                        Intro = (string)reader["Intro"],
+                        Text = (string)reader["Text"],
+                        Image = (string)reader["Image"],
+                        Datetime = (DateTime)reader["Datetime"],
+                        Rating = (int)reader["Rating"],
+                    });
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
             }
             sqlConnection.Close();
             return Result;
@@ -115,26 +121,32 @@ namespace SportCentralDAL
         public NewsDTO GetNewsByID(int ID)
         {
             SqlCommand sqlCommand = new SqlCommand("SELECT * FROM News WHERE NewsID = @NewsID", sqlConnection);
-
             sqlCommand.Parameters.AddWithValue("@NewsID", ID);
 
             sqlConnection.Open();
-            SqlDataReader reader = sqlCommand.ExecuteReader();
-            // zet het resultaat in de reader
-
-            while (reader.Read())
+            try
             {
-                NewsDTO newsDTO = new NewsDTO()
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+                // zet het resultaat in de reader
+
+                while (reader.Read())
                 {
-                    NewsID = (int)reader["NewsID"],
-                    Title = (string)reader["Title"],
-                    Intro = (string)reader["Intro"],
-                    Text = (string)reader["Text"],
-                    Image = (string)reader["Image"],
-                    Datetime = (DateTime)reader["Datetime"],
-                    Rating = (int)reader["Rating"],
-                };
-                return newsDTO;
+                    NewsDTO newsDTO = new NewsDTO()
+                    {
+                        NewsID = (int)reader["NewsID"],
+                        Title = (string)reader["Title"],
+                        Intro = (string)reader["Intro"],
+                        Text = (string)reader["Text"],
+                        Image = (string)reader["Image"],
+                        Datetime = (DateTime)reader["Datetime"],
+                        Rating = (int)reader["Rating"],
+                    };
+                    return newsDTO;
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
             }
             sqlConnection.Close();
             return null;

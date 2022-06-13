@@ -18,6 +18,7 @@ namespace SportCentral.Helper
             news.Image = nvm.Image;
             news.Datetime = nvm.Datetime;
             news.Rating = nvm.Rating;
+            news.CategoryID = nvm.CategoryID;
             return news;
         }
     }

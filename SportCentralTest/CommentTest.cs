@@ -9,19 +9,21 @@ using System.Threading.Tasks;
 namespace SportCentralTest
 {
     [TestClass]
-    public class ReactTest
+    public class CommentTest
     {
         [TestMethod]
         public void ConstructorReactTest()
         {
             //arrange
+            var commentID = 1;
             var text = "Placeholder";
             var rating = true;
             DateTime datetime = new DateTime(2021, 02, 21);
+            var newsID = 1;
             //act
-        //    var react = new React(text, datetime, rating);
+            var comment = new Comment(commentID, text, datetime, rating, newsID);
             //assert
-         //   Assert.IsTrue(react.Text == text && react.DateTime == datetime && react.Rating == rating);
+            Assert.IsTrue(comment.CommentID == commentID && comment.Text == text && comment.DateTime == datetime && comment.Rating == rating && comment.NewsID == newsID);
         }
     }
 } 

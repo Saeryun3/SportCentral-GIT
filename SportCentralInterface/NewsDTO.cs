@@ -15,5 +15,6 @@ namespace SportCentralInterface
         public string Image { get; set; }
         public DateTime Datetime { get; set; }
         public int Rating { get; set; }
+        public int CategoryID { get; set; }
     }
 }

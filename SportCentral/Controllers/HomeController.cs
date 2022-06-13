@@ -40,42 +40,22 @@ namespace SportCentral.Controllers
             return View(nvm);
         }
         [HttpGet]
-        public IActionResult CreateNews()
+        public IActionResult AddNews()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult CreateNews(NewsViewModel nvm)
+        public IActionResult AddNews(NewsViewModel nvm)
         {
             nvm.Datetime = DateTime.Now;
             News news = NewsConvertorr.ConvertToNews(nvm);
             NewsContainer newsContainer = new NewsContainer(new NewsDAL());
             newsContainer.CreateNews(news);
-            return View();
+            return RedirectToAction("Index");
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        public IActionResult Basketball()
-        {
-            return View();
-        }
-
-        public IActionResult Darts()
-        {
-            return View();
-        }
-
-        public IActionResult F1()
-        {
-            return View();
-        }
-
-        public IActionResult Category(string category)
+        public IActionResult Category(int category)
         {
             NewsContainer newsContainer = new NewsContainer(new NewsDAL());
             List<News> newsList = newsContainer.GetAllNewsByCategory(category);
@@ -84,12 +64,7 @@ namespace SportCentral.Controllers
             {
                 newsViewModel.Add(new NewsViewModel(news));
             }
-            return View(newsList);
-        }
-
-        public IActionResult Tennis()
-        {
-            return View();
+            return View(newsViewModel);
         }
 
         public IActionResult DeleteNews(int id)

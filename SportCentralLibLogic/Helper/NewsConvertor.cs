@@ -19,6 +19,7 @@ namespace SportCentralLibLogic.Helper
             newsDTO.Datetime = news.Datetime;
             newsDTO.Rating = news.Rating;
             newsDTO.Image = news.Image;
+            newsDTO.CategoryID = news.CategoryID;
             return newsDTO;
         }
    }

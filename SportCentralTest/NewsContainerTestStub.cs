@@ -13,7 +13,7 @@ namespace SportCentralTest
 
         public NewsContainerTestStub()
         {
-            NewsDTO article = new NewsDTO()
+            NewsDTO article1 = new NewsDTO()
             {
                 NewsID = 1,
                 Title = "Placeholder",
@@ -21,8 +21,21 @@ namespace SportCentralTest
                 Text = "Placeholder",
                 Datetime = DateTime.Now,
                 Rating = 1,
+                CategoryID = 1
             };
-            news.Add(article);
+        NewsDTO article2 = new NewsDTO()
+        {
+            NewsID = 2,
+            Title = "Placeholders",
+            Intro = "Placeholders",
+            Text = "Placeholders",
+            Datetime = DateTime.Now,
+            Rating = 2,
+            CategoryID = 2
+            };
+
+            news.Add(article1);
+            news.Add(article2);
         }
         public bool CreateNews(NewsDTO newsDTO)
         {
@@ -43,22 +56,32 @@ namespace SportCentralTest
 
         public List<NewsDTO> GetAllNews()
         {
-            List<NewsDTO> newsDTOs = new List<NewsDTO>();
-            foreach (NewsDTO newsDTO in news)
-            {
-               
-            }
-            return news;// to do
+            return news;
         }
 
-        public List<NewsDTO> GetAllNewsByCategory(string name)
+        public List<NewsDTO> GetAllNewsByCategory(int category)
         {
-            throw new NotImplementedException();
+            List<NewsDTO> newsDTOs = new List<NewsDTO>();
+            foreach (NewsDTO newsDto in news)
+            {
+                if (newsDto.CategoryID == category)
+                {
+                    newsDTOs.Add(newsDto);
+                }
+            }
+            return newsDTOs;
         }
 
         public NewsDTO GetNewsByID(int ID)
         {
-            throw new NotImplementedException();
+            foreach (NewsDTO newsDTO  in news)
+            {
+                if (newsDTO.NewsID == ID)
+                {
+                    return newsDTO;
+                }
+            }
+            return null;
         }
 
         public void UpdateNews(NewsDTO news)

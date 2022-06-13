@@ -12,8 +12,9 @@ namespace SportCentralLibLogic
         public string Image { get; set; }
         public DateTime Datetime { get; set; }
         public int Rating { get; set; }
+        public int CategoryID { get; set; }
 
-        public News(int newsID, string title, string intro, string text,string image, DateTime datetime, int rating)
+        public News(int newsID, string title, string intro, string text,string image, DateTime datetime, int rating, int categoryID)
         {
             NewsID = newsID;
             Title = title;
@@ -22,6 +23,7 @@ namespace SportCentralLibLogic
             Image = image;
             Datetime = datetime; 
             Rating = rating;
+            CategoryID = categoryID;
         }
         public News(NewsDTO newsDTO)
         {
@@ -32,6 +34,7 @@ namespace SportCentralLibLogic
             Image = newsDTO.Image;
             Datetime = newsDTO.Datetime;
             Rating = newsDTO.Rating;
+            CategoryID = newsDTO.CategoryID;
         }
         public News()
         {
