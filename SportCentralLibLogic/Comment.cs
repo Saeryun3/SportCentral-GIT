@@ -11,7 +11,7 @@ namespace SportCentralLibLogic
     {
         public int CommentID { get; set; }
         public string Text { get;  set; }
-        public DateTime DateTime { get;  set; }
+        public DateTime Datetime { get;  set; }
         public bool Rating { get;  set; }
         public int NewsID { get; set; }
 
@@ -19,7 +19,7 @@ namespace SportCentralLibLogic
         {
             CommentID = commentID;
             Text = text;
-            DateTime = date;
+            Datetime = date;
             Rating = rating;
             NewsID = newsID;
         }
@@ -28,7 +28,7 @@ namespace SportCentralLibLogic
         {
             CommentID = comment.CommentID;
             Text = comment.Text;
-            DateTime = comment.DateTime;
+            Datetime = comment.DateTime;
             Rating = comment.Rating;
             NewsID = comment.NewsID;
         }

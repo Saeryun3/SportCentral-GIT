@@ -14,7 +14,7 @@ namespace SportCentralLibLogic.Helper
             CommentDTO commentDTO = new CommentDTO();
             commentDTO.CommentID = comment.CommentID;
             commentDTO.Text = comment.Text;
-            commentDTO.DateTime = comment.DateTime;
+            commentDTO.DateTime = comment.Datetime;
             commentDTO.Rating = comment.Rating;
             commentDTO.NewsID = comment.NewsID;
             return commentDTO;

@@ -17,7 +17,7 @@ namespace SportCentral.Models
         { 
             CommentID = comment.CommentID;
             Text = comment.Text;
-            DateTime = comment.DateTime;
+            DateTime = comment.Datetime;
             Rating = comment.Rating;
         }
 

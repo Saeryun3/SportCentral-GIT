@@ -21,7 +21,7 @@ namespace SportCentralTest
             {
                 CommentID = 3,
                 Text = "Placeholder3",
-                DateTime = DateTime.Now,
+                Datetime = DateTime.Now,
                 Rating = true,
             };
             //act
@@ -30,12 +30,12 @@ namespace SportCentralTest
             Assert.AreEqual(3, commentContainerTestStub.comments.Count);
             Assert.AreEqual(comment.CommentID, commentContainerTestStub.comments[2].CommentID);
             Assert.AreEqual(comment.Text, commentContainerTestStub.comments[2].Text);
-            Assert.AreEqual(comment.DateTime, commentContainerTestStub.comments[2].DateTime);
+            Assert.AreEqual(comment.Datetime, commentContainerTestStub.comments[2].DateTime);
             Assert.AreEqual(comment.Rating, commentContainerTestStub.comments[2].Rating);
         }
 
         [TestMethod]
-        public void GetAllCommentsTest()// by newsid
+        public void GetAllCommentsTest()//newsid
         {
             //arange
             CommentContainerTestStub commentContainerTestStub = new CommentContainerTestStub();
@@ -43,7 +43,7 @@ namespace SportCentralTest
             //act
             List<Comment> comments = commentContainer.GetAllComments(1);
             //assert
-            Assert.AreEqual(1, comments.Count);
+            Assert.AreEqual(1, comments.Count); 
         }
 
     }

@@ -23,7 +23,7 @@ namespace SportCentralTest
             //act
             var comment = new Comment(commentID, text, datetime, rating, newsID);
             //assert
-            Assert.IsTrue(comment.CommentID == commentID && comment.Text == text && comment.DateTime == datetime && comment.Rating == rating && comment.NewsID == newsID);
+            Assert.IsTrue(comment.CommentID == commentID && comment.Text == text && comment.Datetime == datetime && comment.Rating == rating && comment.NewsID == newsID);
         }
     }
 } 
