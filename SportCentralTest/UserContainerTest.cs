@@ -25,14 +25,15 @@ namespace SportCentralTest
                 Password = "PlacePasswordss",
                 Rank = (int)Rank.User
             };
+            var expectedamount = userContainerTestStub.users.Count + 1;
             //act            
             userContainer.CreateUser(user);
             //assert
-            Assert.AreEqual(3, userContainerTestStub.users.Count);
-            Assert.AreEqual(user.UserID, userContainerTestStub.users[2].UserID);
-            Assert.AreEqual(user.Username, userContainerTestStub.users[2].Username);
-            Assert.AreEqual(user.Password, userContainerTestStub.users[2].Password);
-            Assert.AreEqual((int)user.Rank, userContainerTestStub.users[2].Rank);
+            Assert.AreEqual(expectedamount, userContainerTestStub.users.Count);
+            Assert.AreEqual(user.UserID, userContainerTestStub.users[expectedamount -1].UserID);
+            Assert.AreEqual(user.Username, userContainerTestStub.users[expectedamount - 1].Username);
+            Assert.AreEqual(user.Password, userContainerTestStub.users[expectedamount - 1].Password);
+            Assert.AreEqual((int)user.Rank, userContainerTestStub.users[expectedamount - 1].Rank);
         }
         [TestMethod]
         public void UserExistTest()
@@ -72,6 +73,5 @@ namespace SportCentralTest
             //assert
             Assert.IsTrue(result);
         }
-
     }
 }

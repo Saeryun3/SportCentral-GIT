@@ -24,14 +24,15 @@ namespace SportCentralTest
                 Datetime = DateTime.Now,
                 Rating = true,
             };
+            var expectedamount = commentContainerTestStub.comments.Count + 1;
             //act
             commentContainer.CreateComment(comment);
             //assert
-            Assert.AreEqual(3, commentContainerTestStub.comments.Count);
-            Assert.AreEqual(comment.CommentID, commentContainerTestStub.comments[2].CommentID);
-            Assert.AreEqual(comment.Text, commentContainerTestStub.comments[2].Text);
-            Assert.AreEqual(comment.Datetime, commentContainerTestStub.comments[2].DateTime);
-            Assert.AreEqual(comment.Rating, commentContainerTestStub.comments[2].Rating);
+            Assert.AreEqual(expectedamount, commentContainerTestStub.comments.Count);
+            Assert.AreEqual(comment.CommentID, commentContainerTestStub.comments[expectedamount - 1].CommentID);
+            Assert.AreEqual(comment.Text, commentContainerTestStub.comments[expectedamount - 1].Text);
+            Assert.AreEqual(comment.Datetime, commentContainerTestStub.comments[expectedamount - 1].DateTime);
+            Assert.AreEqual(comment.Rating, commentContainerTestStub.comments[expectedamount - 1].Rating);
         }
 
         [TestMethod]
@@ -40,10 +41,19 @@ namespace SportCentralTest
             //arange
             CommentContainerTestStub commentContainerTestStub = new CommentContainerTestStub();
             CommentContainer commentContainer = new CommentContainer(commentContainerTestStub);
+            var comment1 = commentContainerTestStub.comments[0];
+            int expectedamount = 0;
+            foreach (var comment in commentContainerTestStub.comments)
+            {
+                if (comment1.NewsID == comment.NewsID)
+                {
+                    expectedamount++;
+                }
+            }
             //act
-            List<Comment> comments = commentContainer.GetAllComments(1);
+            List<Comment> comments = commentContainer.GetAllComments(comment1.NewsID);
             //assert
-            Assert.AreEqual(1, comments.Count); 
+            Assert.AreEqual(expectedamount, comments.Count); 
         }
 
     }

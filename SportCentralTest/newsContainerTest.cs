@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SportCentralInterface;
 using SportCentralLibLogic;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace SportCentralTest
 {
     [TestClass]
     public class NewsContainerTest
-    {
+    { // probeer zonder aanpassingen
         [TestMethod]
         public void CreateNewsTest()
         {
@@ -27,18 +28,18 @@ namespace SportCentralTest
                 Rating = 1,
                 Image = "Placeholder"
             };
-            List<News> newsList = new List<News>();
+            var expectedamount = newsContainerTestStub.GetAllNews().Count + 1;
             //act
             newsContainer.CreateNews(news);
             //assert
-            Assert.AreEqual(3, newsContainerTestStub.news.Count);
-            Assert.AreEqual(news.NewsID, newsContainerTestStub.news[2].NewsID);
-            Assert.AreEqual(news.Title, newsContainerTestStub.news[2].Title);
-            Assert.AreEqual(news.Intro, newsContainerTestStub.news[2].Intro);
-            Assert.AreEqual(news.Text, newsContainerTestStub.news[2].Text);
-            Assert.AreEqual(news.Datetime, newsContainerTestStub.news[2].Datetime);
-            Assert.AreEqual(news.Rating, newsContainerTestStub.news[2].Rating);
-            Assert.AreEqual(news.Image, newsContainerTestStub.news[2].Image);
+            Assert.AreEqual(expectedamount, newsContainerTestStub.GetAllNews().Count);
+            Assert.AreEqual(news.NewsID, newsContainerTestStub.news[expectedamount -1].NewsID);
+            Assert.AreEqual(news.Title, newsContainerTestStub.news[expectedamount - 1].Title);
+            Assert.AreEqual(news.Intro, newsContainerTestStub.news[expectedamount - 1].Intro);
+            Assert.AreEqual(news.Text, newsContainerTestStub.news[expectedamount - 1].Text);
+            Assert.AreEqual(news.Datetime, newsContainerTestStub.news[expectedamount - 1].Datetime);
+            Assert.AreEqual(news.Rating, newsContainerTestStub.news[expectedamount - 1].Rating);
+            Assert.AreEqual(news.Image, newsContainerTestStub.news[expectedamount - 1].Image);
         }
 
         [TestMethod]
@@ -47,10 +48,12 @@ namespace SportCentralTest
             //arange
             NewsContainerTestStub newsContainerTestStub = new NewsContainerTestStub();
             NewsContainer newsContainer = new NewsContainer(newsContainerTestStub);
+            var newslist = newsContainer.GetAllNews();
+            var deletenews = newslist[0];
             //act
-            newsContainer.DeleteNews(2);
+            newsContainer.DeleteNews(deletenews.NewsID);            
             //assert
-            Assert.AreEqual(1, newsContainerTestStub.news.Count);
+            Assert.AreEqual(newslist.Count - 1, newsContainerTestStub.news.Count); // hij pak de 1e zonder news id
         }
 
         [TestMethod]
@@ -62,7 +65,7 @@ namespace SportCentralTest
             //act
             List<News> news = newsContainer.GetAllNews();
             // assert
-            Assert.AreEqual(2, news.Count);
+            Assert.AreEqual(newsContainerTestStub.GetAllNews().Count, news.Count);// total news
         }
         [TestMethod]
         public void GetAllNewsByCategory()
@@ -73,7 +76,7 @@ namespace SportCentralTest
             //act
             List<News> news = newsContainer.GetAllNewsByCategory(1);
             //assert
-            Assert.AreEqual(1, news.Count);
+            Assert.AreEqual(newsContainerTestStub.GetAllNewsByCategory(1).Count , news.Count);
         }
 
         [TestMethod]
@@ -82,8 +85,9 @@ namespace SportCentralTest
             //arange
             NewsContainerTestStub newsContainerTestStub = new NewsContainerTestStub();
             NewsContainer newsContainer = new NewsContainer(newsContainerTestStub);
+            var getnews = newsContainerTestStub.GetAllNews()[0];
             //act
-            News news = newsContainer.GetNewsByID(1);
+            News news = newsContainer.GetNewsByID(getnews.NewsID);
             //assert
             Assert.AreEqual(news.NewsID, newsContainerTestStub.news[0].NewsID);
             Assert.AreEqual(news.Title, newsContainerTestStub.news[0].Title);

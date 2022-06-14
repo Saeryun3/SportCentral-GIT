@@ -15,7 +15,7 @@ namespace SportCentralTest
         {
             NewsDTO article1 = new NewsDTO()
             {
-                NewsID = 1,
+                NewsID = 1, 
                 Title = "Placeholder",
                 Intro = "Placeholder",
                 Text = "Placeholder",
