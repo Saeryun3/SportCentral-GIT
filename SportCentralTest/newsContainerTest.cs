@@ -53,7 +53,11 @@ namespace SportCentralTest
             //act
             newsContainer.DeleteNews(deletenews.NewsID);            
             //assert
-            Assert.AreEqual(newslist.Count - 1, newsContainerTestStub.news.Count); // hij pak de 1e zonder news id
+            Assert.AreEqual(newslist.Count - 1, newsContainerTestStub.news.Count);
+            foreach (var news in newsContainerTestStub.news)
+            {
+                Assert.IsFalse(news.NewsID == deletenews.NewsID);
+            }
         }
 
         [TestMethod]

@@ -29,8 +29,17 @@ namespace SportCentralTest
                 Rating = true,
                 NewsID = 2,
             };
+            CommentDTO commentDTO3 = new CommentDTO()
+            {
+                CommentID = 3,
+                Text = "Placeholders",
+                DateTime = DateTime.Now,
+                Rating = true,
+                NewsID = 2,
+            };
             comments.Add(commentDTO1);
             comments.Add(commentDTO2);
+            comments.Add(commentDTO3);
         }
 
         public void CreateComment(CommentDTO commentDTO)
