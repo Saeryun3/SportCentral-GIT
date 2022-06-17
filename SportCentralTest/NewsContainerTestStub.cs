@@ -83,15 +83,5 @@ namespace SportCentralTest
             }
             return null;
         }
-
-        public void UpdateNews(NewsDTO news)
-        {
-            throw new NotImplementedException();
-        }
-
-        //bool INews.Addnews(NewsDTO newsDTO)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

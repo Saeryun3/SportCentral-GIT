@@ -24,10 +24,6 @@ namespace SportCentralLibLogic
             //voor afbeelding in convertor 
         }
 
-        public void UpdateNews(News news)
-        {
-            // insert into (list) and remove
-        }
         public List<News> GetAllNews()
         {
             List<NewsDTO> newsDTOs = News.GetAllNews();
@@ -40,11 +36,7 @@ namespace SportCentralLibLogic
         }
 
         public List<News> GetAllNewsByCategory(int category)
-        {
-            //
-            //in  interface/dal functie neerzetten en query maken bijna zelfde als getallnews
-            //laat de reader lezen zelfde als getallnews
-            // jew wilt category pakken
+        {            
             List<NewsDTO> newsDTOs = News.GetAllNewsByCategory(category);
             List<News> news = new List<News>();
             foreach (NewsDTO newsDTO in newsDTOs)
@@ -63,14 +55,6 @@ namespace SportCentralLibLogic
         public void DeleteNews(int newsID)
         {
             News.DeleteNews(newsID);
-        }
-
-        //public bool RateNews(bool liked)
-        //{
-        //    if (liked == true)
-        //    return false;
-        //}
-
-        
+        }     
     }
 }

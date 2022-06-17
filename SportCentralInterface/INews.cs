@@ -9,7 +9,6 @@ namespace SportCentralInterface
     public interface INews
     {
         bool CreateNews(NewsDTO newsDTO);
-        void UpdateNews(NewsDTO newsDTO);
         List<NewsDTO> GetAllNews();
         List<NewsDTO> GetAllNewsByCategory(int categoryId);
         NewsDTO GetNewsByID(int ID);

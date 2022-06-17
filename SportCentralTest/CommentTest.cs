@@ -20,10 +20,11 @@ namespace SportCentralTest
             var rating = true;
             DateTime datetime = new DateTime(2021, 02, 21);
             var newsID = 1;
+            var userID = 1;
             //act
-            var comment = new Comment(commentID, text, datetime, rating, newsID);
+            var comment = new Comment(commentID, text, datetime, rating, newsID, userID);
             //assert
-            Assert.IsTrue(comment.CommentID == commentID && comment.Text == text && comment.Datetime == datetime && comment.Rating == rating && comment.NewsID == newsID);
+            Assert.IsTrue(comment.CommentID == commentID && comment.Text == text && comment.Datetime == datetime && comment.Rating == rating && comment.NewsID == newsID && comment.UserID == userID);
         }
     }
 } 

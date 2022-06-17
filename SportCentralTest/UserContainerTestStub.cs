@@ -75,5 +75,17 @@ namespace SportCentralTest
             }
             return false;
         }
+
+        public string GetUserByID(int ID)
+        {
+            foreach (UserDTO user in users)
+            {
+                if (user.UserID == ID)
+                {
+                    return user.Username;
+                }
+            }
+            return null;
+        }
     }
 }

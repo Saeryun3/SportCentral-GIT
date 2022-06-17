@@ -49,7 +49,10 @@ namespace SportCentralTest
 
         public void DeleteComment(int commentID)
         {
-            throw new NotImplementedException();
+            foreach (var comment in comments)
+            {
+                comments.Remove(comment);
+            }
         }
 
         public List<CommentDTO> GetAllComments(int newsID)

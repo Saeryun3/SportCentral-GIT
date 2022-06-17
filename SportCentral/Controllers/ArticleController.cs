@@ -15,6 +15,10 @@ namespace SportCentral.Controllers
     {
         public IActionResult Index(int newsID)
         {
+            if(HttpContext.Session.GetString("Rank") == "Moderator")
+            {
+                return RedirectToAction("ModeratorArticle", new { newsID = newsID });
+            }
             NewsContainer newsContainer = new NewsContainer(new NewsDAL());
             CommentContainer commentContainer = new CommentContainer(new CommentDAL());
             UserContainer userContainer = new UserContainer(new UserDAL());
@@ -44,12 +48,32 @@ namespace SportCentral.Controllers
             commentContainer.CreateComment(comment);
             return RedirectToAction("Index", new { newsID = nvm.NewsID });
         }
-        public IActionResult DeleteComment(int id)
+        public IActionResult DeleteComment(int id, int newsID)
         {
             CommentContainer commentContainer  = new CommentContainer(new CommentDAL());
             commentContainer.DeleteComment(id);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { newsID = newsID });
+        }
+        [HttpGet]
+        public IActionResult ModeratorArticle(int newsID)
+        {
+            NewsContainer newsContainer = new NewsContainer(new NewsDAL());
+            CommentContainer commentContainer = new CommentContainer(new CommentDAL());
+            UserContainer userContainer = new UserContainer(new UserDAL());
+            News news = newsContainer.GetNewsByID(newsID);
+            NewsViewModel nvm = new NewsViewModel(news);
+            List<Comment> comments = commentContainer.GetAllComments(newsID);
+            foreach (Comment comment in comments)
+            {
+                nvm.comments.Add(new CommentViewModel(comment, userContainer.GetUserByID(comment.UserID)));
+            }
+            return View(nvm);
         }
 
+        [HttpPost]
+        public IActionResult ModeratorArticle(NewsViewModel nvm)
+        {
+            return View();
+        }
     }
 }

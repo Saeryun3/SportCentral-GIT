@@ -73,5 +73,24 @@ namespace SportCentralTest
             //assert
             Assert.IsTrue(result);
         }
+        [TestMethod]
+        public void getUserByIDTest()
+        {
+            //arange
+            UserContainerTestStub userContainerTestStub = new UserContainerTestStub();
+            UserContainer userContainer = new UserContainer(userContainerTestStub);
+            User user = new User()
+            {
+                UserID = 1,
+                Username = "PlaceName",
+                Email = "Placeholder@gmail.com",
+                Password = "PlacePassword",
+                Rank = (int)Rank.User
+            };
+            //act
+            var result = userContainer.GetUserByID(1);
+            //assert
+            Assert.AreEqual(result, "PlaceName");
+        }
     }
 }

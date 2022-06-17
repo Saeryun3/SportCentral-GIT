@@ -1,5 +1,48 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model NewsViewModel
 @{
+    ViewData["Title"] = "Index";
 }
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>@Model.Title.</title>
+    <link href="~/css/style.css" rel="stylesheet" />
+</head>
+<style>
+</style>
+<body>
+    <h1>@Model.Title</h1>
+    <h3>@Model.Intro</h3>
+    <p>@Model.Text</p>
+
+
+    <div class="commentContainer">
+        <h2>@Model.comments.Count Comments</h2>
+        <form asp-action="AddComment" method="post">
+            <div class="addCommentContainer">
+                <textarea asp-for="CreateCommentString"></textarea>
+                @Html.HiddenFor(m => m.NewsID, new { @Value = Model.NewsID })
+                <input type="submit" name="name" value="Add Comment" />
+            </div>
+        </form>
+        @foreach (CommentViewModel comment in Model.comments)
+        {
+    <div class="commentItem">
+        <p>
+            @comment.Text - <b>@comment.UserName</b> - @comment.DateTime
+        </p>
+        <a class="btn btn-danger" asp-action="DeleteComment" asp-route-id="@comment.CommentID" asp-route-newsID="@Model.NewsID">Verwijder reactie</a>
+    </div>
+        }
+    </div>
+    @if (ViewBag.Message != null)
+    {
+        <script>
+        window.onload = function ()
+        {
+            alert("@ViewBag.Message");
+        }
+        </script>
+    }
+</body>
+</html>

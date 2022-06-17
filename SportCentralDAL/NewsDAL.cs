@@ -151,10 +151,5 @@ namespace SportCentralDAL
             sqlConnection.Close();
             return null;
         }
-
-        public void UpdateNews(NewsDTO news)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
