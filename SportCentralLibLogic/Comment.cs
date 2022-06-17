@@ -14,14 +14,16 @@ namespace SportCentralLibLogic
         public DateTime Datetime { get;  set; }
         public bool Rating { get;  set; }
         public int NewsID { get; set; }
+        public int UserID { get; set; }
 
-        public Comment(int commentID, string text, DateTime date, bool rating, int newsID)
+        public Comment(int commentID, string text, DateTime date, bool rating, int newsID, int userID)
         {
             CommentID = commentID;
             Text = text;
             Datetime = date;
             Rating = rating;
             NewsID = newsID;
+            UserID = userID;
         }
 
         public Comment(CommentDTO comment)
@@ -31,6 +33,7 @@ namespace SportCentralLibLogic
             Datetime = comment.DateTime;
             Rating = comment.Rating;
             NewsID = comment.NewsID;
+            UserID = comment.UserID;
         }
 
         public Comment()

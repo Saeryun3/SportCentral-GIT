@@ -13,5 +13,6 @@ namespace SportCentralInterface
         public DateTime DateTime { get; set; }
         public bool Rating { get; set; }
         public int NewsID { get; set; }
+        public int UserID { get; set; }
     }
 }

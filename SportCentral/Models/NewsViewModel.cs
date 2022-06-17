@@ -21,6 +21,7 @@ namespace SportCentral.Models
         public int Rating { get; set; }
         public int CategoryID { get; set; }
         public List <CommentViewModel> comments = new List<CommentViewModel>();
+        public string CreateCommentString { get; set; }
 
         public NewsViewModel()
         {

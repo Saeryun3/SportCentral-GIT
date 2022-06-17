@@ -40,5 +40,9 @@ namespace SportCentralLibLogic
         {
             return new User(User.GetUserByEmailAndPassword(user.Email, user.Password));
         }
+        public string GetUserByID(int ID)
+        {
+            return User.GetUserByID(ID);
+        }
     }
 }

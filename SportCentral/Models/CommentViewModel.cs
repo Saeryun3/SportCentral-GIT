@@ -12,13 +12,15 @@ namespace SportCentral.Models
         public string Text { get;  set; }
         public DateTime DateTime { get;  set; }
         public bool Rating { get;  set; }
-
-        public CommentViewModel(Comment comment)
+        public int NewsID { get; set; }
+        public string UserName { get; set; }
+        public CommentViewModel(Comment comment, string userName)
         { 
             CommentID = comment.CommentID;
             Text = comment.Text;
             DateTime = comment.Datetime;
             Rating = comment.Rating;
+            UserName = userName;
         }
 
         public CommentViewModel()

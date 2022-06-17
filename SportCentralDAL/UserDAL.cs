@@ -108,5 +108,28 @@ namespace SportCentralDAL
             sqlConnection.Close();
             return false;
         }
+
+        public string GetUserByID(int ID)
+        {
+            SqlCommand sqlCommand = new SqlCommand("SELECT Username FROM [User] WHERE UserID = @ID", sqlConnection);
+            sqlCommand.Parameters.AddWithValue("ID", ID);
+            sqlConnection.Open();
+            string userName = "";
+            try
+            {
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    userName = (string)reader["Username"];
+                }
+                sqlConnection.Close();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+            sqlConnection.Close();
+            return userName;
+        }
     }
 }

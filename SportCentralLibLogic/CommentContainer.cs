@@ -32,10 +32,14 @@ namespace SportCentralLibLogic
             CommentDTO reactDTO = CommentConvertor.ConvertReactToReactDTO(comment);
             Comments.CreateComment(reactDTO); 
         }
-
-        public bool Rate(Comment comment)
+        public void DeleteComment(int commentID)
         {
-            return true;
+            Comments.DeleteComment(commentID);
         }
+
+        //public bool Rate(Comment comment)
+        //{
+        //    return true;
+        //}
     }
 }

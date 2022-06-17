@@ -9,7 +9,6 @@
     <link href="~/css/style.css" rel="stylesheet" />
 </head>
 <style>
-
 </style>
 <body>
     <h1>@Model.Title</h1>
@@ -19,9 +18,10 @@
 
     <div class="commentContainer">
         <h2>@Model.comments.Count Comments</h2>
-        <form action="/" method="post">
+        <form asp-action="AddComment" method="post">
             <div class="addCommentContainer">
-                <textarea></textarea>
+                <textarea asp-for="CreateCommentString"></textarea>
+                @Html.HiddenFor(m => m.NewsID, new { @Value = Model.NewsID })
                 <input type="submit" name="name" value="Add Comment" />
             </div>
         </form>
@@ -29,11 +29,20 @@
         {
             <div class="commentItem">
                 <p>
-                    @comment.Text
+                    @comment.Text - <b>@comment.UserName</b> - @comment.DateTime
                 </p>
             </div>
         }
     </div>
+    @if (ViewBag.Message != null)
+    {
+        <script>
+        window.onload = function ()
+        {
+            alert("@ViewBag.Message");
+        }
+        </script>
+    }
 </body>
 </html>
 

@@ -17,6 +17,7 @@ namespace SportCentralLibLogic.Helper
             commentDTO.DateTime = comment.Datetime;
             commentDTO.Rating = comment.Rating;
             commentDTO.NewsID = comment.NewsID;
+            commentDTO.UserID = comment.UserID;
             return commentDTO;
         }
     }

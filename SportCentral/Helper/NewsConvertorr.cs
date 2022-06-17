@@ -12,6 +12,7 @@ namespace SportCentral.Helper
         public static News ConvertToNews(NewsViewModel nvm)
         {
             News news = new News();
+            news.NewsID = nvm.NewsID;
             news.Title = nvm.Title;
             news.Intro = nvm.Intro;
             news.Text = nvm.Text;

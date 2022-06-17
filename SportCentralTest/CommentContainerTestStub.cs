@@ -47,6 +47,11 @@ namespace SportCentralTest
             comments.Add(commentDTO);
         }
 
+        public void DeleteComment(int commentID)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<CommentDTO> GetAllComments(int newsID)
         {
             List<CommentDTO> CommentDTOs = new List<CommentDTO>();

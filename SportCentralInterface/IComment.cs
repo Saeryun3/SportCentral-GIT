@@ -10,5 +10,6 @@ namespace SportCentralInterface
     {
         void CreateComment(CommentDTO commentDTO);
         List<CommentDTO> GetAllComments(int newsID);
+        void DeleteComment(int commentID);
     }
 }

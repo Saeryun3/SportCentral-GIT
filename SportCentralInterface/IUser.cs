@@ -12,5 +12,6 @@ namespace SportCentralInterface
         bool UserExist(UserDTO userDTO);
         UserDTO GetUserByEmailAndPassword(string Email, string Password);
         bool UserExistsByEmailAndPassword(string Email, string Password);
+        string GetUserByID(int ID);
    }
 }

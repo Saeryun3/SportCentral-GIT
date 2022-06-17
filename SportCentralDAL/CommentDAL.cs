@@ -13,12 +13,29 @@ namespace SportCentralDAL
         SqlConnection sqlConnection = new SqlConnection("Server=mssqlstud.fhict.local;Database=dbi479257;User=dbi479257;Password=Dagal555;");
         public void CreateComment(CommentDTO commentDTO)
         {
-            SqlCommand sqlCommand = new SqlCommand("INSERT INTO Comment(CommentID, Text, DateTime, Rating ) VALUES(@CommentID, @Text, @DateTime, @Rating)", sqlConnection);
+            SqlCommand sqlCommand = new SqlCommand("INSERT INTO Comment(Text, DateTime, UserID, NewsID ) VALUES(@Text, @DateTime, @UserID, @NewsID)", sqlConnection);
             sqlConnection.Open();
-            sqlCommand.Parameters.AddWithValue("@CommentID", commentDTO.CommentID);
             sqlCommand.Parameters.AddWithValue("@Text", commentDTO.Text);
             sqlCommand.Parameters.AddWithValue("@DateTime", commentDTO.DateTime);
-            sqlCommand.Parameters.AddWithValue("@Rating", commentDTO.Rating);
+            sqlCommand.Parameters.AddWithValue("@UserID", commentDTO.UserID);
+            sqlCommand.Parameters.AddWithValue("@NewsID", commentDTO.NewsID);
+            try
+            {
+                sqlCommand.ExecuteNonQuery();
+
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+            sqlConnection.Close();
+        }
+
+        public void DeleteComment(int commentID)
+        {
+            SqlCommand sqlCommand = new SqlCommand("DELETE FROM Comment WHERE CommentID = @CommentID", sqlConnection);
+            sqlConnection.Open();
+            sqlCommand.Parameters.AddWithValue("@CommentID", commentID);
             try
             {
                 sqlCommand.ExecuteNonQuery();
@@ -46,7 +63,8 @@ namespace SportCentralDAL
                     {
                         CommentID = (int)reader["CommentID"],
                         Text = (string)reader["Text"],
-                        //DateTime = (DateTime)reader["CommentID"],
+                        UserID = (int)reader["UserID"],
+                        DateTime = (DateTime)reader["DateTime"],
                     });
                 }
             }
